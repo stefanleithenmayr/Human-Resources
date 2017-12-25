@@ -32,6 +32,16 @@ public class SearchJobController implements Initializable {
         String jobDesc = DBConnection.getInstance().getJobDesc(job);
         String jobSkills = DBConnection.getInstance().getJobSkills(job);
 
+        skillText1.setVisible(false);
+        skillText2.setVisible(false);
+        skillText3.setVisible(false);
+        skillText4.setVisible(false);
+
+        skillIndi1.setVisible(false);
+        skillIndi2.setVisible(false);
+        skillIndi3.setVisible(false);
+        skillIndi4.setVisible(false);
+
         skilllsText.setVisible(true);
         descreption.setVisible(true);
         headLineText.setVisible(true);
