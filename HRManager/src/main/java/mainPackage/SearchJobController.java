@@ -31,12 +31,14 @@ public class SearchJobController implements Initializable {
         String job = (String)outputForJobs.getSelectionModel().getSelectedItem();
         String jobDesc = DBConnection.getInstance().getJobDesc(job);
         String jobSkills = DBConnection.getInstance().getJobSkills(job);
+
         skilllsText.setVisible(true);
         headLineText.setText(job);
         headLineText.setVisible(true);
         descreptionText.setVisible(true);
         descreption.setText(jobDesc);
         descreption.setVisible(true);
+
         if (!jobSkills.isEmpty()){
             skillText1.setVisible(true);
             skillText1.setText(jobSkills.substring(0, jobSkills.indexOf('=')));
@@ -83,6 +85,7 @@ public class SearchJobController implements Initializable {
             e.printStackTrace();
         }
         outputForJobs.getItems().add(output);
+
     }
 
     @Override
