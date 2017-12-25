@@ -33,18 +33,52 @@ public class SearchJobController implements Initializable {
         String jobSkills = DBConnection.getInstance().getJobSkills(job);
 
         skilllsText.setVisible(true);
-        headLineText.setText(job);
+        descreption.setVisible(true);
         headLineText.setVisible(true);
         descreptionText.setVisible(true);
-        descreption.setText(jobDesc);
-        descreption.setVisible(true);
 
-        if (!jobSkills.isEmpty()){
-            skillText1.setVisible(true);
-            skillText1.setText(jobSkills.substring(0, jobSkills.indexOf('=')));
-            skillIndi1.setVisible(true);
-            skillIndi1.setProgress(0.99*Integer.parseInt(jobSkills.substring(jobSkills.indexOf('=')+1, jobSkills.indexOf(';')-1)));
+        headLineText.setText(job);
+        descreption.setText(jobDesc);
+
+        String skillString = "", numberSkill = "";
+        int index = 0;
+
+        for (int i = 0;i < jobSkills.length();i++){
+
+            if (jobSkills.charAt(i) == ';'){
+
+                if (index == 0){
+                    ouputSkills(skillString, numberSkill, skillText1, skillIndi1);
+                }
+                else if(index == 1){
+                    ouputSkills(skillString, numberSkill, skillText2, skillIndi2);
+                }
+                else if(index == 2){
+                    ouputSkills(skillString, numberSkill, skillText3, skillIndi3);
+                }
+                else if(index == 3){
+                    ouputSkills(skillString, numberSkill, skillText4, skillIndi4);
+                }
+                skillString = "";
+                numberSkill = "";
+                index++;
+            }
+            else{
+                if (jobSkills.charAt(i) < '0' && jobSkills.charAt(i) != '='  || jobSkills.charAt(i) > '9' && jobSkills.charAt(i) != '='){
+                    skillString +=jobSkills.charAt(i);
+                }else if(jobSkills.charAt(i) == '='){}
+                else {
+                    numberSkill += jobSkills.charAt(i);
+                }
+            }
         }
+    }
+
+    private void ouputSkills(String skillString, String numberSkill, Text skillText, ProgressIndicator skillIndi) {
+        skillText.setVisible(true);
+        skillText.setText(skillString);
+        skillIndi.setVisible(true);
+        skillIndi.setProgress(0.099*Integer.parseInt(numberSkill));
     }
 
     @FXML
