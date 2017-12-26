@@ -19,7 +19,7 @@
       </ImageView>
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="259.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/cancel-music.png" />
+            <Image url="@../icons/cross-symbol.png" />
          </image>
       </ImageView>
       <JFXTextField fx:id="userNameField" focusColor="WHITE" layoutX="54.0" layoutY="221.0" maxWidth="206.0" minWidth="206.0" prefHeight="36.0" prefWidth="206.0" promptText="Username" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
