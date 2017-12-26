@@ -81,7 +81,7 @@ public class SearchJobController implements Initializable {
                 index++;
             }
             else{
-                if (jobSkills.charAt(i) < '0' && jobSkills.charAt(i) != '='  || jobSkills.charAt(i) > '9' && jobSkills.charAt(i) != '='){
+                if (jobSkills.charAt(i) < '0' && jobSkills.charAt(i) != '=' || jobSkills.charAt(i) > '9' && jobSkills.charAt(i) != '='){
                     skillString +=jobSkills.charAt(i);
                 }else if(jobSkills.charAt(i) == '='){}
                 else {
@@ -108,9 +108,6 @@ public class SearchJobController implements Initializable {
             jobs = DBConnection.getInstance().getJobs();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        if (searchString.equals("")){
-            System.out.println("a");
         }
         outputForJobs.getItems().clear();
         try {
