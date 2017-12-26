@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -25,6 +27,8 @@ public class SearchJobController implements Initializable {
     private ProgressIndicator skillIndi1, skillIndi2, skillIndi3, skillIndi4;
     @FXML
     private Text skilllsText, skillText1, skillText2, skillText3, skillText4, headLineText, descreptionText, descreption;
+    @FXML
+    private Button bewerbenButton;
 
     @FXML
     private void printText(MouseEvent event) throws SQLException {
@@ -45,6 +49,7 @@ public class SearchJobController implements Initializable {
         skilllsText.setVisible(true);
         descreption.setVisible(true);
         headLineText.setVisible(true);
+        bewerbenButton.setVisible(true);
         descreptionText.setVisible(true);
 
         headLineText.setText(job);
@@ -129,7 +134,6 @@ public class SearchJobController implements Initializable {
             e.printStackTrace();
         }
         outputForJobs.getItems().add(output);
-
     }
 
     @Override
