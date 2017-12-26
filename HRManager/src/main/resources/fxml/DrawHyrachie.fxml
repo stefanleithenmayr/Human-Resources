@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="hyrachiePane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.DrawHyrachieController">
-
+   <children>
+      <Text fill="WHITE" layoutX="452.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hyrachie" />
+   </children>
 </AnchorPane>

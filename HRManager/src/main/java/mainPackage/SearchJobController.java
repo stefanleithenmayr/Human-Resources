@@ -49,7 +49,9 @@ public class SearchJobController implements Initializable {
         skilllsText.setVisible(true);
         descreption.setVisible(true);
         headLineText.setVisible(true);
-        bewerbenButton.setVisible(true);
+        if (!DBConnection.isBoss){
+            bewerbenButton.setVisible(true);
+        }
         descreptionText.setVisible(true);
 
         headLineText.setText(job);

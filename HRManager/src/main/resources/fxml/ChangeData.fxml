@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="changeDatePane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.ChangeDataController">
+   <children>
+      <Text fill="WHITE" layoutX="332.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ChangeDate" />
+   </children>
+</AnchorPane>

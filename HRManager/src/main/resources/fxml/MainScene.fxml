@@ -15,12 +15,12 @@
             <Image url="@../icons/magnifier.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hyrachieIcon" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="598.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../icons/note.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="editDateIcon" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../icons/add-user.png" />
          </image>
@@ -30,9 +30,21 @@
             <Image url="@../icons/cross-symbol.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="addJobIcon" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../icons/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="overviewIcon" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="534.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../icons/group%20(1).png" />
+         </image>
+      </ImageView>
       <Button fx:id="searchJob" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
-      <Button fx:id="drawHirachieButton" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
-      <Button fx:id="addMitarbeiter" layoutX="14.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="drawHirachieButton" layoutX="14.0" layoutY="598.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="editDateButton" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" visible="false" />
       <Button fx:id="closeButton" layoutX="14.0" layoutY="668.0" mnemonicParsing="false" onAction="#closePane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="addJobButton" layoutX="14.0" layoutY="472.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" visible="false" />
+      <Button fx:id="overviewButton" layoutX="14.0" layoutY="534.0" mnemonicParsing="false" onAction="#switchPane" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" visible="false" />
    </children>
 </AnchorPane>
