@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import loginPackage.DBConnection;
 import loginPackage.LoginController;
 
-import javax.xml.bind.annotation.XmlList;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,9 +19,11 @@ import java.util.ResourceBundle;
 public class MainSceneController implements Initializable {
 
     @FXML
-    private AnchorPane mainAnchorPane, searchJobPane, hyrachiePane,addEmployeePane;
+    private AnchorPane mainAnchorPane, searchJobPane, hyrachiePane,changeDatePane, applicationsManagerPane, addJobAdvertismentPane;
     @FXML
-    private Button searchJob, addMitarbeiter, drawHirachieButton, closeButton;
+    private Button searchJob, addMitarbeiter, drawHirachieButton, closeButton, overviewButton,addJobButton, editDateButton;
+    @FXML
+    private ImageView hyrachieIcon, overviewIcon, addJobIcon, editDateIcon;
 
     private double xOffset;
     private double yOffset;
@@ -29,15 +32,18 @@ public class MainSceneController implements Initializable {
     private void switchPane(ActionEvent event) {
         Button button = (Button) event.getSource();
         String name = button.getId();
-
         mainAnchorPane.getChildren().clear();
 
         if (name.equals("searchJob")){
             mainAnchorPane.getChildren().add(searchJobPane);
         }else if(name.equals("drawHirachieButton")){
             mainAnchorPane.getChildren().add(hyrachiePane);
-        }else if(name.equals("drawHirachieButton")){
-            mainAnchorPane.getChildren().add(addEmployeePane);
+        }else if(name.equals("editDateButton")){
+            mainAnchorPane.getChildren().add(changeDatePane);
+        }else if(name.equals("overviewButton")){
+            mainAnchorPane.getChildren().add(applicationsManagerPane);
+        }else if(name.equals("addJobButton")){
+            mainAnchorPane.getChildren().add(addJobAdvertismentPane);
         }
     }
 
@@ -62,10 +68,25 @@ public class MainSceneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+
+            if (DBConnection.isBoss){
+                drawHirachieButton.setVisible(true);
+                hyrachieIcon.setVisible(true);
+
+                overviewButton.setVisible(true);
+                overviewIcon.setVisible(true);
+
+                addJobButton.setVisible(true);
+                addJobIcon.setVisible(true);
+            }else{
+                editDateButton.setVisible(true);
+                editDateIcon.setVisible(true);
+            }
             searchJobPane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SearchJobWindow.fxml"));
             hyrachiePane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/DrawHyrachie.fxml"));
-            addEmployeePane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/addEmployee.fxml"));
-
+            changeDatePane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/ChangeData.fxml"));
+            applicationsManagerPane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/ApplicationsManager.fxml"));
+            addJobAdvertismentPane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AddJobAdvertisment.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

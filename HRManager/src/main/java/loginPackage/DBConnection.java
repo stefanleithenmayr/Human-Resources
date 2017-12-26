@@ -4,15 +4,14 @@ import java.sql.*;
 
 public class DBConnection {
     private static DBConnection ourInstance = new DBConnection();
-
     public static DBConnection getInstance() {
         return ourInstance;
     }
-
     public static final String DRIVER_STRING = "org.apache.derby.jdbc.ClientDriver";
-    static final String CONNECTION_STRING = "jdbc:derby://localhost:1527/db;create=true";
+    static final String CONNECTION_STRING = "jdbc:derby://localhost:1527/db";
 
     private Connection conn;
+    public static boolean isBoss = false;
 
     private DBConnection() {
 
@@ -21,8 +20,13 @@ public class DBConnection {
     public boolean login(String userName, String password) throws ClassNotFoundException {
         try {
             Class.forName(DRIVER_STRING);
-            conn = DriverManager.getConnection(CONNECTION_STRING, userName, password);
-            return true;
+            conn = DriverManager.getConnection(CONNECTION_STRING, "app", "app");
+            boolean existUser = existUser(userName, password);
+
+            if (existUser){
+                return true;
+            }
+            return false;
         } catch (SQLException ex) {
             return false;
         }
@@ -31,6 +35,24 @@ public class DBConnection {
     public ResultSet getJobs() throws SQLException {
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM JOBS");
+    }
+    public ResultSet getUser() throws SQLException {
+        Statement stmt = conn.createStatement();
+        return stmt.executeQuery("SELECT * FROM USERS");
+    }
+
+
+    public boolean existUser(String userName, String password) throws SQLException {
+
+        ResultSet rs = getInstance().getUser();
+
+        while (rs.next()){
+            if (rs.getString("USERNAME").equals(userName) && rs.getString("PASSWORD").equals(password)){
+                isBoss = Boolean.parseBoolean(rs.getString("isBoss"));
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getJobDesc(String job) throws SQLException {
@@ -42,7 +64,7 @@ public class DBConnection {
         try {
             while (rs.next()) {
                 try {
-                    if (rs.getString("JOB_ID").equals(jobNumber)){
+                    if (rs.getString("JOB_ID").equals(jobNumber)) {
                         jobDesc = rs.getString("JOB_DESC");
                         break;
                     }
@@ -54,6 +76,7 @@ public class DBConnection {
         }
         return jobDesc;
     }
+
     public String getJobSkills(String job) throws SQLException {
         String jobSkills = "";
         ResultSet rs = getInstance().getJobs();
@@ -62,7 +85,7 @@ public class DBConnection {
         try {
             while (rs.next()) {
                 try {
-                    if (rs.getString("JOB_ID").equals(jobNumber)){
+                    if (rs.getString("JOB_ID").equals(jobNumber)) {
                         jobSkills = rs.getString("JOB_SKILLS");
                         break;
                     }
@@ -81,7 +104,7 @@ public class DBConnection {
         for (int i = 0; i < jobString.length() && found; i++) {
             if (jobString.charAt(i) >= '0' && jobString.charAt(i) <= '9') {
                 number += jobString.charAt(i);
-            }else found = false;
+            } else found = false;
         }
         return number;
     }
