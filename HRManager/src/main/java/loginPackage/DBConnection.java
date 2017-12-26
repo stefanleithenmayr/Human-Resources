@@ -9,7 +9,7 @@ public class DBConnection {
     }
     public static final String DRIVER_STRING = "org.apache.derby.jdbc.ClientDriver";
     static final String CONNECTION_STRING = "jdbc:derby://localhost:1527/db";
-
+    public static String userName;
     private Connection conn;
     public static boolean isBoss = false;
 
@@ -22,7 +22,7 @@ public class DBConnection {
             Class.forName(DRIVER_STRING);
             conn = DriverManager.getConnection(CONNECTION_STRING, "app", "app");
             boolean existUser = existUser(userName, password);
-
+            this.userName = userName;
             if (existUser){
                 return true;
             }
@@ -36,15 +36,35 @@ public class DBConnection {
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM JOBS");
     }
-    public ResultSet getUser() throws SQLException {
+    public ResultSet GetUsers() throws SQLException {
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM USERS");
     }
-
+    public  String getUserSkills(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        String userSkills;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                userSkills = rs.getString("JOB_SKILLS");
+                return userSkills;
+            }
+        }
+        return "";
+    }
+    public void UpdateSkills(String skills) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String sql = "UPDATE users " + "SET job_skills =  '"+skills+"' WHERE username like '"+userName+"'";
+        stmt.executeUpdate(sql);
+    }
+    public void UpdateUserName(String userName1) throws SQLException{
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("UPDATE users set USERNAME = '" + userName1 +"'where username = '"+ userName+"'");
+        userName = userName1;
+    }
 
     public boolean existUser(String userName, String password) throws SQLException {
 
-        ResultSet rs = getInstance().getUser();
+        ResultSet rs = getInstance().GetUsers();
 
         while (rs.next()){
             if (rs.getString("USERNAME").equals(userName) && rs.getString("PASSWORD").equals(password)){

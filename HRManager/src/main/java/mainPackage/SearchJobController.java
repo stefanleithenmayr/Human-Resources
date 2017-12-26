@@ -102,7 +102,6 @@ public class SearchJobController implements Initializable {
     private void filterJobs(KeyEvent event){
         ResultSet jobs = null;
         String searchString = searchElement.getText();
-        String c = event.getText();
         searchString += event.getText();
         try {
             jobs = DBConnection.getInstance().getJobs();

@@ -1,11 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="changeDatePane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.ChangeDataController">
+<AnchorPane fx:id="saveAll" prefHeight="720.0" prefWidth="1220.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.ChangeDataController">
    <children>
-      <Text fill="WHITE" layoutX="332.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ChangeDate" />
+      <JFXTextField fx:id="userName" focusColor="WHITE" layoutX="41.0" layoutY="62.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Username" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="saveAllButton" layoutX="353.0" layoutY="66.0" onAction="#SaveAll" prefHeight="41.0" prefWidth="124.0" text="Save all" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <Text fill="WHITE" layoutX="41.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Skills" wrappingWidth="156.0000149011612">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="skill1" focusColor="WHITE" layoutX="41.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXSlider fx:id="sliderSkill2" layoutX="376.0" layoutY="485.0" max="10.0" min="1.0" />
+      <JFXTextField fx:id="skill2" focusColor="WHITE" layoutX="327.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXSlider fx:id="sliderSkill3" layoutX="659.0" layoutY="485.0" max="10.0" min="1.0" />
+      <JFXTextField fx:id="skill3" focusColor="WHITE" layoutX="610.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXSlider fx:id="sliderSkill4" layoutX="953.0" layoutY="485.0" max="10.0" min="1.0" />
+      <JFXTextField fx:id="skill4" focusColor="WHITE" layoutX="904.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXSlider fx:id="sliderSkill1" layoutX="90.0" layoutY="485.0" max="10.0" min="1.0" />
+      <ImageView fx:id="imageViewAddSkill" fitHeight="35.0" fitWidth="35.0" layoutX="209.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/add.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="addSkillButton" layoutX="209.0" layoutY="370.0" onAction="#addSkill" prefHeight="35.0" prefWidth="35.0" text=" " />
    </children>
 </AnchorPane>
