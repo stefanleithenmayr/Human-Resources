@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="hyrachiePane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.DrawHyrachieController">
+<AnchorPane fx:id="hyrachiePane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.DrawHyrachieController">
    <children>
-      <Text fill="WHITE" layoutX="452.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hyrachie" />
+      <TableView fx:id="mainTableView" layoutX="45.0" layoutY="117.0" prefHeight="502.0" prefWidth="1100.0" style="-fx-font-size: 20; -fx-text-alignment: CENTER-RIGHT;" stylesheets="@../css/columnStyle.css">
+         <columns>
+            <TableColumn editable="false" prefWidth="219.0" sortable="false" />
+            <TableColumn editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
+            <TableColumn fx:id="bossColumn" editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
+            <TableColumn editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
+            <TableColumn editable="false" minWidth="0.0" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

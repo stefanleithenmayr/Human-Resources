@@ -128,4 +128,23 @@ public class DBConnection {
         }
         return number;
     }
+
+    private int countJobs() throws SQLException {
+        ResultSet rs = getInstance().getJobs();
+        int count = 0;
+        try {
+            while (rs.next()) {
+                count++;
+            }
+        } catch (SQLException ex) {
+        }
+        return count;
+    }
+
+    public void insertIntoJobs(String jobname, String jobdesc, String jobskills) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String jobNumber = Integer.toString(this.countJobs()+1);
+        stmt.executeUpdate("INSERT INTO JOBS " +
+                "VALUES ('"+jobname + "',"+ jobNumber +",'"+ jobdesc+"', '"+jobskills+"')");
+    }
 }

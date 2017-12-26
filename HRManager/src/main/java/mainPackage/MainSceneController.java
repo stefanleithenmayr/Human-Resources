@@ -29,13 +29,13 @@ public class MainSceneController implements Initializable {
     private double yOffset;
 
     @FXML
-    private void switchPane(ActionEvent event) {
+    private void switchPane(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         String name = button.getId();
         mainAnchorPane.getChildren().clear();
 
         if (name.equals("searchJob")){
-            mainAnchorPane.getChildren().add(searchJobPane);
+            mainAnchorPane.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SearchJobWindow.fxml")));
         }else if(name.equals("drawHirachieButton")){
             mainAnchorPane.getChildren().add(hyrachiePane);
         }else if(name.equals("editDateButton")){
