@@ -10,6 +10,7 @@ public class DBConnection {
     public static final String DRIVER_STRING = "org.apache.derby.jdbc.ClientDriver";
     static final String CONNECTION_STRING = "jdbc:derby://localhost:1527/db";
     public static String userName;
+    public static String password;
     private Connection conn;
     public static boolean isBoss = false;
 
@@ -23,6 +24,7 @@ public class DBConnection {
             conn = DriverManager.getConnection(CONNECTION_STRING, "app", "app");
             boolean existUser = existUser(userName, password);
             this.userName = userName;
+            this.password = password;
             if (existUser){
                 return true;
             }
@@ -51,17 +53,100 @@ public class DBConnection {
         }
         return "";
     }
-    public void UpdateSkills(String skills) throws SQLException {
-        Statement stmt = conn.createStatement();
-        String sql = "UPDATE users " + "SET job_skills =  '"+skills+"' WHERE username like '"+userName+"'";
-        stmt.executeUpdate(sql);
+    public int getUserAge(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        int age;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                age =  rs.getInt("AGE");
+                return age;
+            }
+        }
+        return -1;
     }
-    public void UpdateUserName(String userName1) throws SQLException{
-        Statement stmt = conn.createStatement();
-        stmt.executeUpdate("UPDATE users set USERNAME = '" + userName1 +"'where username = '"+ userName+"'");
-        userName = userName1;
+    public String getUserRealName(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        String realName;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                realName =  rs.getString("REALNAME");
+                return realName;
+            }
+        }
+        return "";
     }
+    public String getUserPlace(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        String place;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                place =  rs.getString("ORT");
+                return place;
+            }
+        }
+        return "";
+    }
+    public String getUserStreet(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        String street;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                street =  rs.getString("STRASSE");
+                return street;
+            }
+        }
+        return "";
+    }
+    public String getUserTelefonnumber(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        String telefonNumber;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                telefonNumber =  rs.getString("TELEFONNR");
+                return telefonNumber;
+            }
+        }
+        return "";
+    }
+    public String getUserEMail(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        String eMail;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                eMail =  rs.getString("EMAIL");
+                return eMail;
+            }
+        }
+        return "";
+    }
+    public String getUserDescription(String userName) throws SQLException {
+        ResultSet rs = getInstance().GetUsers();
+        String description;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                description =  rs.getString("BESCHREIBUNG");
+                return description;
+            }
+        }
+        return "";
+    }
+    public void UpdateAll(String updates) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String[] lines = updates.split("'");
 
+        stmt.executeUpdate("UPDATE users set USERNAME = '" + lines[0] +"'where username = '"+ userName+"'");
+        userName = lines[0];
+        stmt.executeUpdate("UPDATE users set PASSWORD = '" + lines[1] +"'where username = '"+ userName+"'");
+        password = lines[1];
+        stmt.executeUpdate("UPDATE users set REALNAME = '" + lines[2] +"'where username = '"+ userName+"'");
+        stmt.executeUpdate("UPDATE users set JOB_SKILLS = '" + lines[3] +"'where username = '"+ userName+"'");
+        stmt.executeUpdate("UPDATE users set AGE = " + Integer.parseInt(lines[4]) +"where username = '"+ userName+"'");
+        stmt.executeUpdate("UPDATE users set ORT = '" + lines[5] +"'where username = '"+ userName+"'");
+        stmt.executeUpdate("UPDATE users set STRASSE = '" + lines[6] +"'where username = '"+ userName+"'");
+        stmt.executeUpdate("UPDATE users set TELEFONNR = '" + lines[7] +"'where username = '"+ userName+"'");
+        stmt.executeUpdate("UPDATE users set EMAIL = '" + lines[8] +"'where username = '"+ userName+"'");
+        stmt.executeUpdate("UPDATE users set BESCHREIBUNG = '" + lines[9] +"'where username = '"+ userName+"'");
+        }
     public boolean existUser(String userName, String password) throws SQLException {
 
         ResultSet rs = getInstance().GetUsers();
