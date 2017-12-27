@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.image.Image?>
@@ -11,50 +13,142 @@
 
 <AnchorPane fx:id="saveAll" prefHeight="720.0" prefWidth="1220.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.ChangeDataController">
    <children>
-      <JFXTextField fx:id="userName" focusColor="WHITE" layoutX="41.0" layoutY="62.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Username" unFocusColor="WHITE">
+      <JFXTextField fx:id="userName" focusColor="WHITE" layoutX="266.0" layoutY="48.0" maxWidth="265.0" minWidth="237.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Username" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXButton fx:id="saveAllButton" layoutX="353.0" layoutY="66.0" onAction="#SaveAll" prefHeight="41.0" prefWidth="124.0" text="Save all" textFill="WHITE">
+      <JFXButton fx:id="saveAllButton" layoutX="1093.0" layoutY="7.0" onAction="#SaveAll" prefHeight="41.0" prefWidth="124.0" text="Save all" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <Text fill="WHITE" layoutX="41.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Skills" wrappingWidth="156.0000149011612">
+      <Text fill="WHITE" layoutX="85.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Skills" wrappingWidth="156.0000149011612">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <JFXTextField fx:id="skill1" focusColor="WHITE" layoutX="41.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+      <JFXTextField fx:id="skill1" focusColor="WHITE" layoutX="85.0" layoutY="592.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXSlider fx:id="sliderSkill2" layoutX="376.0" layoutY="485.0" max="10.0" min="1.0" />
-      <JFXTextField fx:id="skill2" focusColor="WHITE" layoutX="327.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+      <JFXSlider fx:id="sliderSkill2" layoutX="366.0" layoutY="640.0" max="10.0" min="1.0" />
+      <JFXTextField fx:id="skill2" focusColor="WHITE" layoutX="317.0" layoutY="592.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXSlider fx:id="sliderSkill3" layoutX="659.0" layoutY="485.0" max="10.0" min="1.0" />
-      <JFXTextField fx:id="skill3" focusColor="WHITE" layoutX="610.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+      <JFXSlider fx:id="sliderSkill3" layoutX="596.0" layoutY="640.0" max="10.0" min="1.0" />
+      <JFXTextField fx:id="skill3" focusColor="WHITE" layoutX="547.0" layoutY="592.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXSlider fx:id="sliderSkill4" layoutX="953.0" layoutY="485.0" max="10.0" min="1.0" />
-      <JFXTextField fx:id="skill4" focusColor="WHITE" layoutX="904.0" layoutY="437.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+      <JFXSlider fx:id="sliderSkill4" layoutX="825.0" layoutY="640.0" max="10.0" min="1.0" />
+      <JFXTextField fx:id="skill4" focusColor="WHITE" layoutX="776.0" layoutY="592.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXSlider fx:id="sliderSkill1" layoutX="90.0" layoutY="485.0" max="10.0" min="1.0" />
-      <ImageView fx:id="imageViewAddSkill" fitHeight="35.0" fitWidth="35.0" layoutX="209.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
+      <JFXSlider fx:id="sliderSkill1" layoutX="134.0" layoutY="640.0" max="10.0" min="1.0" />
+      <ImageView fx:id="imageViewAddSkill" fitHeight="35.0" fitWidth="35.0" layoutX="282.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/add.png" />
+            <Image url="@../icons/add%20(1).png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="addSkillButton" layoutX="209.0" layoutY="370.0" onAction="#addSkill" prefHeight="35.0" prefWidth="35.0" text=" " />
+      <JFXButton fx:id="addSkillButton" layoutX="282.0" layoutY="546.0" onAction="#addSkill" prefHeight="35.0" prefWidth="35.0" text=" " />
+      <ImageView fx:id="imageViewAddSkill1" fitHeight="35.0" fitWidth="35.0" layoutX="330.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/substract.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="substractSkillButton" layoutX="330.0" layoutY="546.0" onAction="#substractSkill" prefHeight="35.0" prefWidth="35.0" text=" " />
+      <JFXTextField fx:id="realNameField" focusColor="WHITE" layoutX="266.0" layoutY="172.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Real name" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="passwordField" focusColor="WHITE" layoutX="266.0" layoutY="96.0" maxWidth="265.0" minWidth="209.0" prefHeight="48.0" prefWidth="265.0" promptText="Password" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXTextField fx:id="ageField" focusColor="WHITE" layoutX="266.0" layoutY="220.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Age" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="ortField" focusColor="WHITE" layoutX="266.0" layoutY="268.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Place" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="streetField" focusColor="WHITE" layoutX="266.0" layoutY="316.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Street" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="telefonNumberField" focusColor="WHITE" layoutX="266.0" layoutY="364.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Telefonnumber" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="eMailField" focusColor="WHITE" layoutX="266.0" layoutY="412.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="E-mail" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="descriptionField" alignment="TOP_LEFT" focusColor="WHITE" layoutX="591.0" layoutY="100.0" maxWidth="801.0" minWidth="230.0" prefHeight="360.0" prefWidth="517.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Description" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXCheckBox fx:id="passwordCheckBox" layoutX="281.0" layoutY="155.0" onAction="#writePassword" text="Passwort anzeigen" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="85.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="99.00001287460327">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="85.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="99.0000149011612">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="85.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="99.0000149011612">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="85.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:" wrappingWidth="99.0000149011612">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="85.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Place:" wrappingWidth="99.0000149011612">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="85.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Street:" wrappingWidth="99.0000149011612">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="85.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnumber:" wrappingWidth="148.0000149011612">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="85.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:" wrappingWidth="132.9999941587448">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="591.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="132.9999941587448">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
