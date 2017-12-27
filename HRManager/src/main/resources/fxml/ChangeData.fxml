@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="saveAll" prefHeight="720.0" prefWidth="1220.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.ChangeDataController">
    <children>
-      <JFXTextField fx:id="userName" focusColor="WHITE" layoutX="266.0" layoutY="48.0" maxWidth="265.0" minWidth="237.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Username" unFocusColor="WHITE">
+      <JFXTextField fx:id="userName" focusColor="WHITE" layoutX="266.0" layoutY="48.0" maxWidth="265.0" minWidth="237.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
@@ -64,42 +64,42 @@
          </image>
       </ImageView>
       <JFXButton fx:id="substractSkillButton" layoutX="330.0" layoutY="546.0" onAction="#substractSkill" prefHeight="35.0" prefWidth="35.0" text=" " />
-      <JFXTextField fx:id="realNameField" focusColor="WHITE" layoutX="266.0" layoutY="172.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Real name" unFocusColor="WHITE">
+      <JFXTextField fx:id="realNameField" focusColor="WHITE" layoutX="266.0" layoutY="172.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="passwordField" focusColor="WHITE" layoutX="266.0" layoutY="96.0" maxWidth="265.0" minWidth="209.0" prefHeight="48.0" prefWidth="265.0" promptText="Password" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
+      <JFXPasswordField fx:id="passwordField" focusColor="WHITE" layoutX="266.0" layoutY="96.0" maxWidth="265.0" minWidth="209.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXPasswordField>
-      <JFXTextField fx:id="ageField" focusColor="WHITE" layoutX="266.0" layoutY="220.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Age" unFocusColor="WHITE">
+      <JFXTextField fx:id="ageField" focusColor="WHITE" layoutX="266.0" layoutY="220.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="ortField" focusColor="WHITE" layoutX="266.0" layoutY="268.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Place" unFocusColor="WHITE">
+      <JFXTextField fx:id="ortField" focusColor="WHITE" layoutX="266.0" layoutY="268.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="streetField" focusColor="WHITE" layoutX="266.0" layoutY="316.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Street" unFocusColor="WHITE">
+      <JFXTextField fx:id="streetField" focusColor="WHITE" layoutX="266.0" layoutY="316.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="telefonNumberField" focusColor="WHITE" layoutX="266.0" layoutY="364.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Telefonnumber" unFocusColor="WHITE">
+      <JFXTextField fx:id="telefonNumberField" focusColor="WHITE" layoutX="266.0" layoutY="364.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="eMailField" focusColor="WHITE" layoutX="266.0" layoutY="412.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="E-mail" unFocusColor="WHITE">
+      <JFXTextField fx:id="eMailField" focusColor="WHITE" layoutX="266.0" layoutY="412.0" maxWidth="265.0" minWidth="230.0" prefHeight="48.0" prefWidth="265.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="descriptionField" alignment="TOP_LEFT" focusColor="WHITE" layoutX="591.0" layoutY="100.0" maxWidth="801.0" minWidth="230.0" prefHeight="360.0" prefWidth="517.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="Description" unFocusColor="WHITE">
+      <JFXTextField fx:id="descriptionField" alignment="TOP_LEFT" focusColor="WHITE" layoutX="591.0" layoutY="100.0" maxWidth="801.0" minWidth="230.0" prefHeight="360.0" prefWidth="517.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font size="19.0" />
          </font>

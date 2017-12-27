@@ -117,10 +117,10 @@ public class ChangeDataController implements Initializable {
         }
 
 
-        if (skills != null) {
+        if (!skills.equals("<null>") ) {
             String[] lines = skills.split(";");
 
-            for (int i = 0; i < lines.length && i < 4 && !skills.equals("<null>"); i++) {
+            for (int i = 0; i < lines.length && i < 4; i++) {
                 String[] line = lines[i].split("=");
                 if (i == 0) {
                     skill1.setVisible(true);
@@ -153,17 +153,17 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!realName.equals("")){
+        if (realName != null && !realName.equals("") && !realName.equals("<null>")){
             realNameField.setText(realName);
         }
 
-        int age = -1;
+        Integer age = -1;
         try {
             age = DBConnection.getInstance().getUserAge(name);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (age != -1 && age != 0){
+        if (age != null && age != -1 && age != 0 ){
             ageField.setText(Integer.toString(age));
         }
 
@@ -173,7 +173,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!place.equals("")){
+        if (place != null && !place.equals("") && !place.equals("<null>")){
             ortField.setText(place);
         }
 
@@ -183,7 +183,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!street.equals("")){
+        if (street != null && !street.equals("") && !street.equals("<null>")){
             streetField.setText(street);
         }
 
@@ -193,7 +193,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!telefonNumber.equals("")){
+        if (telefonNumber != null && !telefonNumber.equals("") && !telefonNumber.equals("<null>")){
             telefonNumberField.setText(telefonNumber);
         }
 
@@ -203,16 +203,17 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!eMail.equals("")){
+        if (eMail != null && !eMail.equals("") && !eMail.equals("<null>")){
             eMailField.setText(eMail);
         }
+
         String description = "";
         try {
             description = DBConnection.getInstance().getUserDescription(name);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!description.equals("")){
+        if (description != null && !description.equals("") && !description.equals("<null>")){
             descriptionField.setText(description);
         }
     }
