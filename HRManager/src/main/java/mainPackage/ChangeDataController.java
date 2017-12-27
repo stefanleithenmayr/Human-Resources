@@ -184,7 +184,7 @@ public class ChangeDataController implements Initializable {
             e.printStackTrace();
         }
         if (!street.equals("")){
-            ortField.setText(street);
+            streetField.setText(street);
         }
 
         String telefonNumber = "";

@@ -1,10 +1,12 @@
 package loginPackage;
 
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Year;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.xml.soap.Text;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -28,6 +31,8 @@ public class LoginController implements Initializable {
     private JFXTextField userNameField;
     @FXML
     private JFXPasswordField passwordField;
+    @FXML
+    private JFXTextField falseInputField;
 
     public static Stage mainStage;
 
@@ -39,10 +44,11 @@ public class LoginController implements Initializable {
 
     @FXML
     private void loginAction(ActionEvent event) throws ClassNotFoundException, IOException, SQLException {
-
-        boolean loginSuccessful = false;
-        while (!loginSuccessful) {
-            loginSuccessful = DBConnection.getInstance().login(userNameField.getText(), passwordField.getText());
+        boolean loginSuccessful;
+        loginSuccessful = DBConnection.getInstance().login(userNameField.getText(), passwordField.getText());
+        if (!loginSuccessful){
+            falseInputField.setVisible(true);
+            return;
         }
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
