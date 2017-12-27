@@ -6,10 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import loginPackage.DBConnection;
-import sun.security.util.Password;
 
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -26,27 +24,29 @@ public class ChangeDataController implements Initializable {
     JFXPasswordField passwordField;
     @FXML
     JFXCheckBox passwordCheckBox;
+
     @FXML
     private void substractSkill(ActionEvent event) throws SQLException{
-        if (!skill4.getText().equals("")){
+        if (!skill4.getText().isEmpty()){
             skill4.setText("");
             sliderSkill4.setValue(0);
             skill4.setVisible(false);
             sliderSkill4.setVisible(false);
         }
-        else if (!skill3.getText().equals("")){
+        else if (!skill3.getText().isEmpty()){
             skill3.setText("");
             sliderSkill3.setValue(0);
             skill3.setVisible(false);
             sliderSkill3.setVisible(false);
         }
-        else if (!skill2.getText().equals("")){
+        else if (!skill2.getText().isEmpty()){
             skill2.setText("");
             sliderSkill2.setValue(0);
             skill2.setVisible(false);
             sliderSkill2.setVisible(false);
         }
     }
+
     @FXML
     private void SaveAll(ActionEvent event) throws SQLException {
         String update = userName.getText() + "'" + passwordField.getText()+ "'" + realNameField.getText() + "'";
@@ -69,25 +69,25 @@ public class ChangeDataController implements Initializable {
     }
     @FXML
     private void addSkill(ActionEvent event){
-        if (skill1.getText().equals("")) {
+        if (skill1.getText().isEmpty()) {
             skill1.setVisible(true);
             sliderSkill1.setVisible(true);
             skill1.setText("YourSkill");
             sliderSkill1.setValue(0);
         }
-        else if (skill2.getText().equals("")) {
+        else if (skill2.getText().isEmpty()) {
             skill2.setVisible(true);
             sliderSkill2.setVisible(true);
             skill2.setText("YourSkill");
             sliderSkill2.setValue(0);
         }
-        else if (skill3.getText().equals("")) {
+        else if (skill3.getText().isEmpty()) {
             skill3.setVisible(true);
             sliderSkill3.setVisible(true);
             skill3.setText("YourSkill");
             sliderSkill3.setValue(0);
         }
-        else if (skill4.getText().equals("")) {
+        else if (skill4.getText().isEmpty()) {
             skill4.setVisible(true);
             sliderSkill4.setVisible(true);
             skill4.setText("YourSkill");
@@ -100,15 +100,19 @@ public class ChangeDataController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         String name = DBConnection.getInstance().userName;
         String password = DBConnection.getInstance().password;
+
         userName.setText(name);
+
         skill1.setVisible(false);
         skill2.setVisible(false);
         skill3.setVisible(false);
         skill4.setVisible(false);
+
         sliderSkill1.setVisible(false);
         sliderSkill2.setVisible(false);
         sliderSkill3.setVisible(false);
         sliderSkill4.setVisible(false);
+
         String skills = "";
         try {
             skills = DBConnection.getInstance().getUserSkills(name);
@@ -116,10 +120,8 @@ public class ChangeDataController implements Initializable {
             e.printStackTrace();
         }
 
-
-        if (skills != null) {
+        if (skills != null && !skills.isEmpty()) {
             String[] lines = skills.split(";");
-
             for (int i = 0; i < lines.length && i < 4 && !skills.equals("<null>"); i++) {
                 String[] line = lines[i].split("=");
                 if (i == 0) {
@@ -153,7 +155,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!realName.equals("")){
+        if (realName != null &&!realName.isEmpty()){
             realNameField.setText(realName);
         }
 
@@ -163,7 +165,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (age != -1 && age != 0){
+        if (age > 0){
             ageField.setText(Integer.toString(age));
         }
 
@@ -173,7 +175,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!place.equals("")){
+        if (place != null && !place.isEmpty()){
             ortField.setText(place);
         }
 
@@ -183,7 +185,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!street.equals("")){
+        if (street != null && !street.isEmpty()){
             streetField.setText(street);
         }
 
@@ -193,7 +195,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!telefonNumber.equals("")){
+        if (telefonNumber != null && !telefonNumber.isEmpty()){
             telefonNumberField.setText(telefonNumber);
         }
 
@@ -203,7 +205,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!eMail.equals("")){
+        if (eMail != null && !eMail.isEmpty()){
             eMailField.setText(eMail);
         }
         String description = "";
@@ -212,7 +214,7 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!description.equals("")){
+        if (description != null && !description.equals("")){
             descriptionField.setText(description);
         }
     }
