@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="383.0" prefWidth="314.0" style="-fx-background-color: #3D4956; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginPackage.LoginController">
+<AnchorPane prefHeight="383.0" prefWidth="314.0" style="-fx-background-color: #3D4956; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginPackage.LoginController">
     <children>
       <JFXButton defaultButton="true" layoutX="252.0" layoutY="323.0" onAction="#loginAction" style="-fx-background-color: #3D4956;" text="Login" textFill="#bcaaaa" />
       <ImageView fitHeight="113.0" fitWidth="112.0" layoutX="102.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
@@ -33,5 +33,10 @@
          </font>
       </JFXPasswordField>
       <Button fx:id="closeButton" layoutX="259.0" layoutY="29.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
+      <JFXTextField fx:id="falseInputField" alignment="TOP_LEFT" editable="false" focusColor="#3d4956" layoutX="115.0" layoutY="318.0" maxWidth="86.0" minWidth="71.0" prefHeight="36.0" prefWidth="86.0" style="-fx-text-fill: red;" text="false input" unFocusColor="#3d4956" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
     </children>
 </AnchorPane>
