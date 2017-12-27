@@ -15,7 +15,9 @@ import java.util.ResourceBundle;
 
 public class ChangeDataController implements Initializable {
     @FXML
-    JFXTextField userName, skill1, skill2, skill3, skill4,realNameField,ageField,ortField,streetField,telefonNumberField,eMailField,descriptionField;
+    JFXTextField userName, skill1, skill2, skill3, skill4,realNameField,ageField,ortField,streetField,telefonNumberField,eMailField;
+    @FXML
+    JFXTextArea descriptionField;
     @FXML
     JFXSlider sliderSkill1,sliderSkill2,sliderSkill3,sliderSkill4;
     @FXML
@@ -117,27 +119,27 @@ public class ChangeDataController implements Initializable {
         }
 
 
-        if (!skills.equals("<null>") ) {
+        if (skills != null && !skills.equals("<null>") ) {
             String[] lines = skills.split(";");
 
             for (int i = 0; i < lines.length && i < 4; i++) {
                 String[] line = lines[i].split("=");
-                if (i == 0) {
+                if (i == 0 && line.length == 2) {
                     skill1.setVisible(true);
                     sliderSkill1.setVisible(true);
                     skill1.setText(line[0]);
                     sliderSkill1.setValue(Double.parseDouble(line[1]));
-                } else if (i == 1) {
+                } else if (i == 1 && line.length == 2) {
                     skill2.setVisible(true);
                     sliderSkill2.setVisible(true);
                     skill2.setText(line[0]);
                     sliderSkill2.setValue(Double.parseDouble(line[1]));
-                } else if (i == 2) {
+                } else if (i == 2 && line.length == 2) {
                     skill3.setVisible(true);
                     sliderSkill3.setVisible(true);
                     skill3.setText(line[0]);
                     sliderSkill3.setValue(Double.parseDouble(line[1]));
-                } else if (i == 3) {
+                } else if (i == 3 && line.length == 2) {
                     skill4.setVisible(true);
                     sliderSkill4.setVisible(true);
                     skill4.setText(line[0]);
