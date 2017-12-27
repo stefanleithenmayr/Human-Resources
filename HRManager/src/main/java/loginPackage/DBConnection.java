@@ -1,5 +1,6 @@
 package loginPackage;
 
+import java.lang.reflect.Executable;
 import java.sql.*;
 
 public class DBConnection {
@@ -153,12 +154,22 @@ public class DBConnection {
 
         stmt.executeUpdate("UPDATE users set REALNAME = '" + lines[2] +"'where username = '"+ userName+"'");
         stmt.executeUpdate("UPDATE users set JOB_SKILLS = '" + lines[3] +"'where username = '"+ userName+"'");
-        stmt.executeUpdate("UPDATE users set AGE = " + Integer.parseInt(lines[4]) +"where username = '"+ userName+"'");
-        stmt.executeUpdate("UPDATE users set ORT = '" + lines[5] +"'where username = '"+ userName+"'");
-        stmt.executeUpdate("UPDATE users set STRASSE = '" + lines[6] +"'where username = '"+ userName+"'");
-        stmt.executeUpdate("UPDATE users set TELEFONNR = '" + lines[7] +"'where username = '"+ userName+"'");
-        stmt.executeUpdate("UPDATE users set EMAIL = '" + lines[8] +"'where username = '"+ userName+"'");
-        stmt.executeUpdate("UPDATE users set BESCHREIBUNG = '" + lines[9] +"'where username = '"+ userName+"'");
+        int age;
+        try {
+            age = Integer.parseInt(lines[4]);
+        } catch (NumberFormatException e) {
+            age = -1;
+        }
+        if (age >= 0){
+            stmt.executeUpdate("UPDATE users set AGE = " + age +"where username = '"+ userName+"'");
+        }
+        if (lines.length > 5){
+            stmt.executeUpdate("UPDATE users set ORT = '" + lines[5] +"'where username = '"+ userName+"'");
+            stmt.executeUpdate("UPDATE users set STRASSE = '" + lines[6] +"'where username = '"+ userName+"'");
+            stmt.executeUpdate("UPDATE users set TELEFONNR = '" + lines[7] +"'where username = '"+ userName+"'");
+            stmt.executeUpdate("UPDATE users set EMAIL = '" + lines[8] +"'where username = '"+ userName+"'");
+            stmt.executeUpdate("UPDATE users set BESCHREIBUNG = '" + lines[9] +"'where username = '"+ userName+"'");
+        }
         }
 
     public boolean existUser(String userName, String password) throws SQLException {
