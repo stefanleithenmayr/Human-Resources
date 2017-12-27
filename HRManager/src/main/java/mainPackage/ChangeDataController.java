@@ -115,32 +115,34 @@ public class ChangeDataController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String[] lines = skills.split(";");
-        for (int i =0;i < lines.length && i < 4 && !skills.equals("<null>"); i++){
-            String[] line = lines[i].split("=");
-            if (i == 0){
-                skill1.setVisible(true);
-                sliderSkill1.setVisible(true);
-                skill1.setText(line[0]);
-                sliderSkill1.setValue(Double.parseDouble(line[1]));
-            }
-            else if (i == 1){
-                skill2.setVisible(true);
-                sliderSkill2.setVisible(true);
-                skill2.setText(line[0]);
-                sliderSkill2.setValue(Double.parseDouble(line[1]));
-            }
-            else if (i == 2){
-                skill3.setVisible(true);
-                sliderSkill3.setVisible(true);
-                skill3.setText(line[0]);
-                sliderSkill3.setValue(Double.parseDouble(line[1]));
-            }
-            else if (i == 3){
-                skill4.setVisible(true);
-                sliderSkill4.setVisible(true);
-                skill4.setText(line[0]);
-                sliderSkill4.setValue(Double.parseDouble(line[1]));
+
+
+        if (skills != null) {
+            String[] lines = skills.split(";");
+
+            for (int i = 0; i < lines.length && i < 4 && !skills.equals("<null>"); i++) {
+                String[] line = lines[i].split("=");
+                if (i == 0) {
+                    skill1.setVisible(true);
+                    sliderSkill1.setVisible(true);
+                    skill1.setText(line[0]);
+                    sliderSkill1.setValue(Double.parseDouble(line[1]));
+                } else if (i == 1) {
+                    skill2.setVisible(true);
+                    sliderSkill2.setVisible(true);
+                    skill2.setText(line[0]);
+                    sliderSkill2.setValue(Double.parseDouble(line[1]));
+                } else if (i == 2) {
+                    skill3.setVisible(true);
+                    sliderSkill3.setVisible(true);
+                    skill3.setText(line[0]);
+                    sliderSkill3.setValue(Double.parseDouble(line[1]));
+                } else if (i == 3) {
+                    skill4.setVisible(true);
+                    sliderSkill4.setVisible(true);
+                    skill4.setText(line[0]);
+                    sliderSkill4.setValue(Double.parseDouble(line[1]));
+                }
             }
         }
         passwordField.setText(password);
