@@ -120,7 +120,7 @@ public class ChangeDataController implements Initializable {
             e.printStackTrace();
         }
 
-        if (!skills.equals("<null>") ) {
+        if (skills != null && !skills.equals("<null>") ) {
             String[] lines = skills.split(";");
 
             for (int i = 0; i < lines.length && i < 4; i++) {
