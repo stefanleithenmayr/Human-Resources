@@ -19,9 +19,9 @@ import java.util.ResourceBundle;
 public class MainSceneController implements Initializable {
 
     @FXML
-    private AnchorPane mainAnchorPane, searchJobPane, hyrachiePane,changeDatePane, applicationsManagerPane, addJobAdvertismentPane, carPane;
+    private AnchorPane mainAnchorPane, searchJobPane, hyrachiePane,changeDatePane, applicationsManagerPane, addJobAdvertismentPane;
     @FXML
-    private Button searchJob, addMitarbeiter, drawHirachieButton, closeButton, overviewButton,addJobButton, editDateButton,karButt;
+    private Button searchJob, addMitarbeiter, drawHirachieButton, closeButton, overviewButton,addJobButton, editDateButton;
     @FXML
     private ImageView hyrachieIcon, overviewIcon, addJobIcon, editDateIcon;
 
@@ -44,8 +44,6 @@ public class MainSceneController implements Initializable {
             mainAnchorPane.getChildren().add(applicationsManagerPane);
         }else if(name.equals("addJobButton")){
             mainAnchorPane.getChildren().add(addJobAdvertismentPane);
-        }else if(name.equals("karButt")){
-            mainAnchorPane.getChildren().add(carPane);
         }
     }
 
@@ -89,7 +87,6 @@ public class MainSceneController implements Initializable {
             changeDatePane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/ChangeData.fxml"));
             applicationsManagerPane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/ApplicationsManager.fxml"));
             addJobAdvertismentPane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/AddJobAdvertisment.fxml"));
-            carPane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/CarrerPane.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
