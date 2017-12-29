@@ -28,7 +28,7 @@
       <Text fx:id="skillText3" fill="WHITE" layoutX="889.0" layoutY="547.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Verdana; -fx-font-size: 16;" text="Text" visible="false" />
       <Text fx:id="descreptionText" fill="WHITE" layoutX="420.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Verdana; -fx-font-size: 16;" text="Description" visible="false" />
       <Text fx:id="descreption" fill="WHITE" layoutX="420.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Verdana; -fx-font-size: 16;" text="Text" visible="false" wrappingWidth="736.9830722808838" />
-      <Button fx:id="bewerbenButton" layoutX="1116.0" layoutY="662.0" mnemonicParsing="false" text="Bewerben" visible="false">
+      <Button fx:id="bewerbenButton" layoutX="1116.0" layoutY="662.0" mnemonicParsing="false" onAction="#applyForSelectedJob" text="Bewerben" visible="false">
          <font>
             <Font size="14.0" />
          </font>

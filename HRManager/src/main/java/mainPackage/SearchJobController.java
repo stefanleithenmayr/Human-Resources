@@ -2,6 +2,7 @@ package mainPackage;
 
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -118,7 +119,7 @@ public class SearchJobController implements Initializable {
                     PrintJob(jobs);
                 }
             }
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
         }
     }
 
@@ -133,23 +134,29 @@ public class SearchJobController implements Initializable {
         }
         outputForJobs.getItems().add(output);
     }
-
+    @FXML
+    private void applyForSelectedJob(ActionEvent event) throws SQLException {
+        String name = DBConnection.getInstance().userName;
+        String job = (String)outputForJobs.getSelectionModel().getSelectedItem();
+        Integer job_id = DBConnection.getInstance().getJobID(job);
+        System.out.println("Job: "+ job + "  ID: "+ job_id);
+        DBConnection.getInstance().insertAppliance(name,job_id);
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+            ResultSet jobs = null;
 
-        ResultSet jobs = null;
-
-        try {
-            jobs = DBConnection.getInstance().getJobs();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            while (jobs.next()) {
-                PrintJob(jobs);
+            try {
+                jobs = DBConnection.getInstance().getJobs();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException ex) {
+
+            try {
+                while (jobs.next()) {
+                    PrintJob(jobs);
+                }
+            } catch (SQLException ex) {
         }
     }
 }
