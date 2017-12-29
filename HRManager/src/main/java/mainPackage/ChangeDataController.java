@@ -23,13 +23,15 @@ public class ChangeDataController implements Initializable {
     @FXML
     JFXButton saveAllButton, addSkillButton, substractSkillButton;
     @FXML
-    ImageView imageViewAddSkill;
+    ImageView imageViewAddSkill,imageViewSubstractSkill;
     @FXML
     JFXPasswordField passwordField;
     @FXML
     JFXCheckBox passwordCheckBox;
     @FXML
     private void substractSkill(ActionEvent event) throws SQLException{
+        addSkillButton.setVisible(true);
+        imageViewAddSkill.setVisible(true);
         if (!skill4.getText().equals("")){
             skill4.setText("");
             sliderSkill4.setValue(0);
@@ -47,6 +49,8 @@ public class ChangeDataController implements Initializable {
             sliderSkill2.setValue(0);
             skill2.setVisible(false);
             sliderSkill2.setVisible(false);
+            substractSkillButton.setVisible(false);
+            imageViewSubstractSkill.setVisible(false);
         }
     }
     @FXML
@@ -65,12 +69,37 @@ public class ChangeDataController implements Initializable {
         if (!skill4.getText().equals("")){
             updateSkills += skill4.getText()+"="+sliderSkill4.getValue()+";";
         }
-        update += updateSkills + "'" + ageField.getText() + "'" + ortField.getText() + "'" + streetField.getText() + "'"
-                + telefonNumberField.getText() + "'" + eMailField.getText() + "'" + descriptionField.getText();
+        update += updateSkills;
+        if (!ageField.getText().equals("")){
+            update +="'"+ ageField.getText() + "'";
+        }
+        else update += "' '";
+        if (!ortField.getText().equals("")){
+            update += ortField.getText() + "'";
+        }
+        else update += " '";
+        if (!streetField.getText().equals("")){
+            update += streetField.getText() + "'";
+        }
+        else update += " '";
+        if (!telefonNumberField.getText().equals("")){
+            update += telefonNumberField.getText() + "'";
+        }
+        else update += " '";
+        if (!eMailField.getText().equals("")){
+            update += eMailField.getText() + "'";
+        }
+        else update += " '";
+        if (descriptionField.getText() != null && !descriptionField.getText().equals("")){
+            update += descriptionField.getText();
+        }
+        else update += " '";
         DBConnection.getInstance().UpdateAll(update);
     }
     @FXML
     private void addSkill(ActionEvent event){
+        substractSkillButton.setVisible(true);
+        imageViewSubstractSkill.setVisible(true);
         if (skill1.getText().equals("")) {
             skill1.setVisible(true);
             sliderSkill1.setVisible(true);

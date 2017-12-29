@@ -9,7 +9,7 @@ public class DBConnection {
         return ourInstance;
     }
     public static final String DRIVER_STRING = "org.apache.derby.jdbc.ClientDriver";
-    static final String CONNECTION_STRING = "jdbc:derby://localhost:1527/db";
+    static final String CONNECTION_STRING = "jdbc:derby://localhost:1527/db;create=true";
     public static String userName;
     public static String password;
     private Connection conn;
@@ -34,7 +34,6 @@ public class DBConnection {
             return false;
         }
     }
-
     public ResultSet getJobs() throws SQLException {
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM JOBS");
@@ -42,6 +41,31 @@ public class DBConnection {
     public ResultSet GetUsers() throws SQLException {
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM USERS");
+    }
+    public void insertAppliance(String userName, Integer job_id) throws SQLException {
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("INSERT INTO JOB_APPLICATIONS VALUES ('"+userName+"',"+job_id+")");
+    }
+    public Integer getApplicationIdByName(String name) throws SQLException {
+        ResultSet rs = getInstance().getJobs();
+        while (rs.next()){
+            if (rs.getString("JOB_NAME").equals(name)){
+                return rs.getInt("JOB_ID");
+            }
+        }
+        return -1;
+    }
+    public ResultSet GetJob_Appliances() throws SQLException {
+        Statement stmt = conn.createStatement();
+        return stmt.executeQuery("SELECT * FROM JOB_APPLICATIONS");
+    }
+    public String GetJob_AppliancesNameID() throws SQLException {
+        ResultSet rs = GetJob_Appliances();
+        String returnString = "";
+        while(rs.next()){
+            returnString += (rs.getString("USERNAME")+";"+rs.getInt("JOB_ID")+"\n");
+        }
+        return returnString;
     }
     public  String getUserSkills(String userName) throws SQLException {
         ResultSet rs = getInstance().GetUsers();
@@ -155,6 +179,9 @@ public class DBConnection {
             stmt.executeUpdate("UPDATE users set STRASSE = '" + lines[6] +"'where username = '"+ userName+"'");
             stmt.executeUpdate("UPDATE users set TELEFONNR = '" + lines[7] +"'where username = '"+ userName+"'");
             stmt.executeUpdate("UPDATE users set EMAIL = '" + lines[8] +"'where username = '"+ userName+"'");
+            if (lines[9] == null){
+                lines[9] = " ";
+            }
             stmt.executeUpdate("UPDATE users set BESCHREIBUNG = '" + lines[9] +"'where username = '"+ userName+"'");
         }
         }
@@ -170,7 +197,42 @@ public class DBConnection {
         }
         return false;
     }
-
+    public String getUserNameJobIDByString(String givenString) throws SQLException {
+         ResultSet rsappliances = getInstance().GetJob_Appliances();
+         ResultSet rsjobs = getInstance().getJobs();
+         ResultSet rsUsers = getInstance().GetUsers();
+         String userName = "";
+         String realName = "";
+         Integer jobID = -1;
+         while (rsUsers.next()){
+            if (givenString.contains(rsUsers.getString("REALNAME"))){
+                userName = rsUsers.getString("USERNAME");
+                break;
+            }
+        }
+         while (rsjobs.next()){
+             if (givenString.contains(rsjobs.getString("JOB_NAME"))){
+                jobID = rsjobs.getInt("JOB_ID");
+                break;
+             }
+         }
+         return userName+";"+jobID;
+    }
+    public String getJobByJobID(String job_id) throws SQLException {
+        String jobSkills = "";
+        ResultSet rs = getInstance().getJobs();
+        while (rs.next()){
+            if (rs.getString("JOB_ID").equals(job_id)){
+                return rs.getString("JOB_NAME");
+            }
+        }
+        return "";
+    }
+    public Integer getJobID(String job) throws SQLException {
+        ResultSet rs = getInstance().getJobs();
+        Integer jobNumber = Integer.parseInt(this.getJobNumber(job));
+        return jobNumber;
+    }
     public String getJobDesc(String job) throws SQLException {
 
         String jobDesc = "";
