@@ -37,7 +37,7 @@ public class MainSceneController implements Initializable {
         if (name.equals("searchJob")){
             mainAnchorPane.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SearchJobWindow.fxml")));
         }else if(name.equals("drawHirachieButton")){
-            mainAnchorPane.getChildren().add(hyrachiePane);
+            mainAnchorPane.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/DrawHyrachie.fxml")));
         }else if(name.equals("editDateButton")){
             mainAnchorPane.getChildren().add(changeDatePane);
         }else if(name.equals("overviewButton")){

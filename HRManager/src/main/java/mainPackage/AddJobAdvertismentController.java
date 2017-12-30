@@ -68,11 +68,13 @@ public class AddJobAdvertismentController implements Initializable {
         String skillString = "";
         skillString += (firstSkillInputName.getText() + "=" + Math.round(firstSlider.getValue()) + ";");
 
-        if (count <= 2){
+        if (count >= 2){
             skillString += (secondSkillInputName.getText() + "=" + Math.round(secondSlider.getValue()) + ";");
-        }else if(count <=3){
+        }
+        if(count >= 3){
             skillString += (thirdSkillInputName.getText() + "=" + Math.round(thirdSlider.getValue()) + ";");
-        }else if(count <=4){
+        }
+        if(count >= 4){
             skillString += (quattroSkillInputName.getText() + "=" + Math.round(quattroSlider.getValue()) + ";");
         }
         DBConnection.getInstance().insertIntoJobs(jobNameField.getText(), jobdescField.getText(), skillString);
