@@ -1,7 +1,8 @@
 package loginPackage;
 
-import java.lang.reflect.Executable;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBConnection {
     private static DBConnection ourInstance = new DBConnection();
@@ -38,13 +39,22 @@ public class DBConnection {
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM JOBS");
     }
-    public ResultSet GetUsers() throws SQLException {
+    public ResultSet getUsers() throws SQLException {
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM USERS");
     }
     public void insertAppliance(String userName, Integer job_id) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("INSERT INTO JOB_APPLICATIONS VALUES ('"+userName+"',"+job_id+")");
+    }
+    public String getUserName(String name) throws SQLException {
+        ResultSet rs = getInstance().getUsers();
+        while (rs.next()){
+            if (rs.getString("REALNAME").equals(name)){
+                return rs.getString("USERNAME");
+            }
+        }
+        return "";
     }
     public Integer getApplicationIdByName(String name) throws SQLException {
         ResultSet rs = getInstance().getJobs();
@@ -54,6 +64,17 @@ public class DBConnection {
             }
         }
         return -1;
+    }
+    public  String getUserSkills(String userName) throws SQLException {
+        ResultSet rs = getInstance().getUsers();
+        String userSkills;
+        while(rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                userSkills = rs.getString("JOB_SKILLS");
+                return userSkills;
+            }
+        }
+        return "";
     }
     public ResultSet GetJob_Appliances() throws SQLException {
         Statement stmt = conn.createStatement();
@@ -67,8 +88,8 @@ public class DBConnection {
         }
         return returnString;
     }
-    public  String getUserSkills(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+    public  String kills(String userName) throws SQLException {
+        ResultSet rs = getInstance().getUsers();
         String userSkills;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -79,7 +100,7 @@ public class DBConnection {
         return "";
     }
     public int getUserAge(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
         int age;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -90,7 +111,7 @@ public class DBConnection {
         return -1;
     }
     public String getUserRealName(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
         String realName;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -101,7 +122,7 @@ public class DBConnection {
         return "";
     }
     public String getUserPlace(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
         String place;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -112,7 +133,7 @@ public class DBConnection {
         return "";
     }
     public String getUserStreet(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
         String street;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -123,7 +144,7 @@ public class DBConnection {
         return "";
     }
     public String getUserTelefonnumber(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
         String telefonNumber;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -134,7 +155,7 @@ public class DBConnection {
         return "";
     }
     public String getUserEMail(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
         String eMail;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -145,7 +166,7 @@ public class DBConnection {
         return "";
     }
     public String getUserDescription(String userName) throws SQLException {
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
         String description;
         while(rs.next()){
             if (rs.getString("USERNAME").equals(userName)){
@@ -187,7 +208,7 @@ public class DBConnection {
         }
     public boolean existUser(String userName, String password) throws SQLException {
 
-        ResultSet rs = getInstance().GetUsers();
+        ResultSet rs = getInstance().getUsers();
 
         while (rs.next()){
             if (rs.getString("USERNAME").equals(userName) && rs.getString("PASSWORD").equals(password)){
@@ -200,7 +221,7 @@ public class DBConnection {
     public String getUserNameJobIDByString(String givenString) throws SQLException {
          ResultSet rsappliances = getInstance().GetJob_Appliances();
          ResultSet rsjobs = getInstance().getJobs();
-         ResultSet rsUsers = getInstance().GetUsers();
+         ResultSet rsUsers = getInstance().getUsers();
          String userName = "";
          String realName = "";
          Integer jobID = -1;
@@ -263,7 +284,7 @@ public class DBConnection {
         try {
             while (rs.next()) {
                 try {
-                    if (rs.getString("JOB_ID").equals(jobNumber)) {
+                    if (Integer.toString(rs.getInt("JOB_ID")).equals(jobNumber)) {
                         jobSkills = rs.getString("JOB_SKILLS");
                         break;
                     }
@@ -280,7 +301,7 @@ public class DBConnection {
         String number = "";
         boolean found = true;
         for (int i = 0; i < jobString.length() && found; i++) {
-            if (jobString.charAt(i) >= '0' && jobString.charAt(i) <= '9') {
+            if (Character.isDigit(jobString.charAt(i))){
                 number += jobString.charAt(i);
             } else found = false;
         }
@@ -304,5 +325,52 @@ public class DBConnection {
         String jobNumber = Integer.toString(this.countJobs()+1);
         stmt.executeUpdate("INSERT INTO JOBS " +
                 "VALUES ('"+jobname + "',"+ jobNumber +",'"+ jobdesc+"', '"+jobskills+"')");
+    }
+
+    public String getBoss() throws SQLException {
+        ResultSet rs = getInstance().getUsers();
+        try {
+            while (rs.next()) {
+                try {
+                    if (rs.getString("ISEMPLOYEE") != null && rs.getString("ISEMPLOYEE").equals("1")) {
+                        return rs.getString("REALNAME");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException ex) {
+        }
+        return "";
+    }
+    public List getEmployees() throws SQLException {
+        ResultSet rs = getInstance().getUsers();
+        List<String> employees = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                try {
+                    if (rs.getString("ISEMPLOYEE") != null && rs.getString("ISEMPLOYEE").equals("2")) {
+                        employees.add(rs.getString("REALNAME"));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException ex) {
+        }
+        return employees;
+    }
+
+    public void setEmployee(String userName) throws SQLException {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = this.getUsers();
+
+        while (rs.next()){
+            if (rs.getString("USERNAME").equals(userName)){
+                stmt.executeUpdate("UPDATE users set ISEMPLOYEE = '" + 2 +"'where username = '"+ userName+"'");
+                break;
+            }
+        }
     }
 }

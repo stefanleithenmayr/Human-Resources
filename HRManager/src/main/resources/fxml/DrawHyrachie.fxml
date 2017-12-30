@@ -1,19 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="hyrachiePane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainPackage.DrawHyrachieController">
    <children>
-      <TableView fx:id="mainTableView" layoutX="45.0" layoutY="117.0" prefHeight="502.0" prefWidth="1100.0" style="-fx-font-size: 20; -fx-text-alignment: CENTER-RIGHT;" stylesheets="@../css/columnStyle.css">
+      <TableView fx:id="mainTableView" layoutX="50.0" layoutY="21.0" onMouseClicked="#clickItem" prefHeight="380.0" prefWidth="1100.0" style="-fx-font-size: 20; -fx-text-alignment: CENTER-RIGHT;" stylesheets="@../css/columnStyle.css">
          <columns>
-            <TableColumn editable="false" prefWidth="219.0" sortable="false" />
-            <TableColumn editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
+            <TableColumn fx:id="firstCol" editable="false" prefWidth="219.0" sortable="false" />
+            <TableColumn fx:id="secondCol" editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
             <TableColumn fx:id="bossColumn" editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
-            <TableColumn editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
-            <TableColumn editable="false" minWidth="0.0" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
+            <TableColumn fx:id="thirdCol" editable="false" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
+            <TableColumn fx:id="quattroCol" editable="false" minWidth="0.0" prefWidth="219.0" sortable="false" style="-fx-font-color: black;" />
          </columns>
       </TableView>
+      <Label fx:id="nameLabel" layoutX="50.0" layoutY="437.0" prefHeight="27.0" prefWidth="472.0" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="placeLabel" layoutX="50.0" layoutY="480.0" prefHeight="27.0" prefWidth="472.0" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailLabel" layoutX="50.0" layoutY="525.0" prefHeight="27.0" prefWidth="472.0" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="numberLabel" layoutX="50.0" layoutY="571.0" prefHeight="27.0" prefWidth="472.0" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

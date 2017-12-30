@@ -99,10 +99,7 @@ public class ApplicationsManager implements Initializable {
             String userNameJobID = DBConnection.getInstance().getUserNameJobIDByString((String)outputForAppliances.getSelectionModel().getSelectedItem());
             String[] line = userNameJobID.split(";");
             String userName = line[0];
-            Integer job_id = Integer.parseInt(line[1]);
-            //Auf Hirachie adden
-            //Email an genommenen Kandidaten senden
-            //set Mitarbeiter auf true
+            DBConnection.getInstance().setEmployee(userName);
         }
     }
     @FXML
