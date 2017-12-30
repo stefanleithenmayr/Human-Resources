@@ -1,5 +1,5 @@
 package mainPackage;
-//38
+
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -162,36 +162,38 @@ public class ApplicationsManager implements Initializable {
             e.printStackTrace();
         }
         String[] lines = appliances.split("\n");
-        for (int i = 0; i < lines.length; i++){
-            String[] line = lines[i].split(";");
-            String job = DBConnection.getInstance().getJobByJobID(line[1]);
-            String name = DBConnection.getInstance().getUserRealName(line[0]);
-            cache = job+"§ JobID: "+ line[1];
-            if (!dropdown.contains(cache)){
-                dropdown += (cache+"\n");
+        if (!lines[0].isEmpty()){
+            for (int i = 0; i < lines.length; i++){
+                String[] line = lines[i].split(";");
+                String job = DBConnection.getInstance().getJobByJobID(line[1]);
+                String name = DBConnection.getInstance().getUserRealName(line[0]);
+                cache = job+"§ JobID: "+ line[1];
+                if (!dropdown.contains(cache)){
+                    dropdown += (cache+"\n");
+                }
+                String output = name + " hat sich für "+job+" beworben";
+                outputForAppliances.getItems().add(output);
             }
-            String output = name + " hat sich für "+job+" beworben";
-            outputForAppliances.getItems().add(output);
-        }
-        lines = dropdown.split("\n");
-        boolean changed = true;
-        String cache1;
-        while (changed){
-            changed = false;
-            for (int i = 0; i+1 < lines.length; i++){
-                String[] lineNow = lines[i].split(": ");
-                String[] lineNext = lines[i+1].split(": ");
-                if (Integer.parseInt(lineNow[1]) > Integer.parseInt(lineNext[1])){
-                    cache1 = lines[i+1];
-                    lines[i+1] = lines[i];
-                    lines[i] = cache1;
-                    changed = true;
+            lines = dropdown.split("\n");
+            boolean changed = true;
+            String cache1;
+            while (changed){
+                changed = false;
+                for (int i = 0; i+1 < lines.length; i++){
+                    String[] lineNow = lines[i].split(": ");
+                    String[] lineNext = lines[i+1].split(": ");
+                    if (Integer.parseInt(lineNow[1]) > Integer.parseInt(lineNext[1])){
+                        cache1 = lines[i+1];
+                        lines[i+1] = lines[i];
+                        lines[i] = cache1;
+                        changed = true;
+                    }
                 }
             }
-        }
-        for (int i = 1; i < lines.length; i++){
-            String[] line = lines[i].split("§");
-            comboBoxJobs.getItems().add(line[0]);
+            for (int i = 1; i < lines.length; i++){
+                String[] line = lines[i].split("§");
+                comboBoxJobs.getItems().add(line[0]);
+            }
         }
     }
 }

@@ -139,7 +139,6 @@ public class SearchJobController implements Initializable {
         String name = DBConnection.getInstance().userName;
         String job = (String)outputForJobs.getSelectionModel().getSelectedItem();
         Integer job_id = DBConnection.getInstance().getJobID(job);
-        System.out.println("Job: "+ job + "  ID: "+ job_id);
         DBConnection.getInstance().insertAppliance(name,job_id);
     }
     @Override
